@@ -7,17 +7,16 @@
     "test": "jest"
   },
   "dependencies": {
-    "@exponent/ex-navigation": "^2.1.3",
-    "babel-preset-react-native-stage-0": "^1.0.1",
     "react": "15.3.2",
     "react-native": "0.37.0",
     "react-native-vector-icons": "^3.0.0",
+    "react-native-smart-splash-screen": "https://github.com/parkerdan/react-native-smart-splash-screen/tarball/master",
     "react-redux": "^4.4.6",
     "redux": "^3.6.0",
     "redux-logger": "^2.7.4",
     "redux-thunk": "^2.1.0",
     "rn-header": "^1.3.0",
-    "rn-loading-view": "^1.0.0"
+    "rn-loading-view": "^1.1.0"
   },
   "jest": {
     "preset": "jest-react-native"

@@ -1,6 +1,10 @@
 package com.brewcards;
 
 import com.facebook.react.ReactActivity;
+import com.parkerdan.splashscreen.SplashScreen;
+import com.facebook.react.bridge.ReactContext;
+import com.facebook.react.ReactInstanceManager;
+import android.os.Bundle;
 
 public class MainActivity extends ReactActivity {
 
@@ -12,4 +16,10 @@ public class MainActivity extends ReactActivity {
     protected String getMainComponentName() {
         return "BrewCards";
     }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+      SplashScreen.show(this);
+      super.onCreate(savedInstanceState);
+   }
 }

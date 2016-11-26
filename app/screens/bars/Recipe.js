@@ -12,6 +12,7 @@ import { popRoute } from '../../state/actions/navActions';
 import { loading  } from '../../styles/loading';
 import { header, headerHeight, headerColor, backIcon } from '../../styles/header';
 import { card } from '../../styles/card';
+import colors from '../../styles/colors';
 
 //Views
 import Header from 'rn-header';
@@ -44,8 +45,8 @@ class Recipe extends React.Component {
           contentContainerStyle={{
             padding: 20
           }}>
-          <Text style={ [card.titleText,{marginVertical:10}] }>{this.props.title}</Text>
-          <Text style={ card.detailText }>{this.props.recipe}</Text>
+          <Text style={ [card.titleText,{marginVertical:10,color:colors.watermelon}] }>{this.props.title}</Text>
+          <Text style={ [card.detailText,{color:colors.watermelon}] }>{this.props.recipe}</Text>
         </ScrollView>
 
         <Footer />

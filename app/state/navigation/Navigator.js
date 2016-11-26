@@ -3,12 +3,14 @@
 import React from 'react';
 import { NavigationExperimental, BackAndroid, AsyncStorage } from 'react-native';
 import renderScene from './renderScene';
+import SplashScreen from 'react-native-smart-splash-screen';
 
 const { CardStack: NavigationCardStack } = NavigationExperimental;
 
 export default class Navigator extends React.Component {
 
   componentDidMount() {
+    SplashScreen.close("scale", 500, 500);
     BackAndroid.addEventListener('hardwareBackPress', this.handleBackAction);
     AsyncStorage.getItem('settings')
     .then((res) => {
