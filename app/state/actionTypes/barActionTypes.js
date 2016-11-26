@@ -1,11 +1,10 @@
 'use strict'
 
 export default barActionTypes([
-  'GET_ALL_BARS',
-  'GET_BAR_DETAILS',
-  'REQUEST_PENDING',
-  'REQUEST_FULFILLED',
-  'REQUEST_ERROR'
+  'GET_BARS',
+  'BAR_REQUEST_PENDING',
+  'BAR_REQUEST_FULFILLED',
+  'BAR_REQUEST_ERROR',
 ]);
 
 function barActionTypes(names) {

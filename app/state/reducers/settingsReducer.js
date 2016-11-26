@@ -1,6 +1,8 @@
 'use strict'
 
 import Settings from '../actionTypes/settingsActionTypes';
+import { AsyncStorage } from 'react-native';
+
 
 const defaultState = {
   showSwiper:true
@@ -9,11 +11,15 @@ const defaultState = {
 const settingsReducer = (state=defaultState,action) => {
   switch (action.type) {
     case Settings.SHOW_SWIPER:
-      return { ...state,showSwiper:true}
+      var newState = { ...state,showSwiper:true}
+      AsyncStorage.setItem('settings',JSON.stringify(newState));
+      return newState
       break;
 
     case Settings.SHOW_SCROLL:
-      return { ...state,showSwiper:false}
+      var newState = { ...state,showSwiper:false}
+      AsyncStorage.setItem('settings',JSON.stringify(newState));
+      return newState
       break;
 
   }

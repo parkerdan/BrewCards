@@ -6,8 +6,6 @@ import { ListView } from 'react-native';
 
 const ds = new ListView.DataSource({rowHasChanged: (r1,r2) => r1 !== r2,sectionHeaderHasChanged: (s1,s2) => s1 !== s2});
 
-
-
 const constructDataBlob = (array) => {
   let blob = {};
   for (var i = 0; i < array.length; i++) {
@@ -22,15 +20,15 @@ const constructDataBlob = (array) => {
 }
 
 const requestPending = () => {
-  return {type: Bars.REQUEST_PENDING }
+  return {type: Bars.BAR_REQUEST_PENDING }
 }
 
 const requestError = () => {
-  return {type: Bars.REQUEST_ERROR}
+  return {type: Bars.BAR_REQUEST_ERROR}
 }
 
-const requestFulfilled = (barsArray) => {
-  return {type: Bars.REQUEST_FULFILLED, payload: constructDataBlob(barsArray) }
+const allBarsFulfilled = (barsArray) => {
+  return {type: Bars.BAR_REQUEST_FULFILLED, payload: constructDataBlob(barsArray) }
 }
 
 export const getBars = (attempt) => {
@@ -43,7 +41,7 @@ export const getBars = (attempt) => {
 
     fetch(Api.getBars, {method:'get',headers:Api.headers} )
     .then((res) => Api.checkStatus(res))
-    .then((res) => dispatch(requestFulfilled(res.response)))
+    .then((res) => dispatch(allBarsFulfilled(res.response)))
     .catch((e) => {
       // try again if error in case of server hiccup
       if (requestNumber < 3) {

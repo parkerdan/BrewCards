@@ -22,7 +22,7 @@ import Footer from '../../components/Footer';
 
 
 const mapStateToProps = (state) => {
-  return {settings:state.settings,nav:state.nav}
+  return {settings:state.settings}
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -46,7 +46,6 @@ class SettingsMain extends React.Component {
 
   componentDidMount(){
     InteractionManager.runAfterInteractions( () => this.setState({interactionsRunning:false}) );
-    console.log(this.props);
   };
 
   render(){
@@ -70,15 +69,14 @@ class SettingsMain extends React.Component {
     if (this.state.interactionsRunning) {
       return <LoadingView spinnerProps={ spinner }/>
     } else {
-      return this.mainView()
+      return this.renderMainView()
     }
   };
 
-  mainView(){
+  renderMainView(){
     return(
       <View style={{flex:1}}>
         <Text style={settings.heading}>How would your cards presented?</Text>
-
         <TouchableOpacity
           onPress={ () => this.props.showSwiper() }
           style={ settings.optionContainer }>

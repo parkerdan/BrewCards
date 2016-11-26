@@ -1,15 +1,21 @@
 'use strict';
 
 import React from 'react';
-import { NavigationExperimental, BackAndroid, Text } from 'react-native';
+import { NavigationExperimental, BackAndroid, AsyncStorage } from 'react-native';
 import renderScene from './renderScene';
 
-const { CardStack: NavigationCardStack,Transitioner: NavigationTransitioner } = NavigationExperimental;
+const { CardStack: NavigationCardStack } = NavigationExperimental;
 
 export default class Navigator extends React.Component {
 
   componentDidMount() {
     BackAndroid.addEventListener('hardwareBackPress', this.handleBackAction);
+    AsyncStorage.getItem('settings')
+    .then((res) => {
+      if (res) {
+         (JSON.parse(res).showSwiper) ? this.props.showSwiper():this.props.showScroll();
+      }
+    }).done()
   };
 
   componentWillUnmount() {

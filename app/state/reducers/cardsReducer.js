@@ -1,21 +1,23 @@
 'use strict'
 
-import Bars from '../actionTypes/barActionTypes';
+import Cards from '../actionTypes/cardActionTypes';
 
 const defaultState = {
   requestPending: false,
   requestError: false,
   dataSource: false,
   errorMessage: null,
+  cards: false,
+  index:0
 }
 
-const barReducer = (state=defaultState,action) => {
+const cardsReducer = (state=defaultState,action) => {
   switch (action.type) {
-    case Bars.BAR_REQUEST_PENDING:
+    case Cards.CARD_REQUEST_PENDING:
       return { ...defaultState, requestPending:true }
       break;
 
-    case Bars.BAR_REQUEST_ERROR:
+    case Cards.CARD_REQUEST_ERROR:
       return { ...state,
         requestError:true,
         requestPending: defaultState.requestPending,
@@ -23,12 +25,12 @@ const barReducer = (state=defaultState,action) => {
        }
       break;
 
-    case Bars.BAR_REQUEST_FULFILLED:
+    case Cards.CARD_REQUEST_FULFILLED:
       return { ...state,
-        dataSource: action.payload,
         requestPending: defaultState.requestPending,
         requestError: defaultState.requestError,
-        errorMessage: defaultState.errorMessage
+        errorMessage: defaultState.errorMessage,
+        cards: action.payload
       }
       break;
 
@@ -36,4 +38,4 @@ const barReducer = (state=defaultState,action) => {
   return state
 }
 
-export default barReducer;
+export default cardsReducer;

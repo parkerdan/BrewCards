@@ -39,9 +39,7 @@ export default class BarRow extends React.Component {
     let cards = (this.props.data.cardCount > 1) ? '-Cards':'-Card';
     return(
       <TouchableOpacity
-        onPress={ () => console.log('do stuff')
-          // () => pushRoute('BarDetail',{bar:this.props.data})
-        }>
+        onPress={ this.props.onPress }>
         <View style={ styles.container }>
 
           <View style={ styles.titleContainer }>

@@ -10,9 +10,14 @@ export const header = StyleSheet.create({
     color: colors.watermelon,
     fontWeight:'600'
   },
+  margin: {
+    marginBottom:5
+  }
 })
 
 export const headerHeight = 60;
 export const headerColor = colors.carbon;
-export const settingsIcon = {name:'cogs',size:20,color:colors.watermelon,style:{marginBottom:5}};
-export const backIcon = {name:'chevron-left',size:20,color:colors.watermelon, style:{marginBottom:5}};
+export const settingsIcon = {name:'cogs',size:20,color:colors.watermelon,style:header.margin};
+export const backIcon = {name:'chevron-left',size:20,color:colors.watermelon, style:header.margin};
+export const recipeIcon = {name:'flask',size:20, style: header.margin}
+export const closeIcon = {name:'close',size:20,style:header.margin}

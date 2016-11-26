@@ -21,7 +21,7 @@ import BarRow from '../../components/BarRow';
 import BarSectionHeader from '../../components/BarSectionHeader';
 
 // Routes
-import { SettingsMain } from '../../state/navigation/routes';
+import { SettingsMain, BarDetail } from '../../state/navigation/routes';
 
 
 const mapStateToProps = (state) => {
@@ -74,18 +74,19 @@ class BarsMain extends React.Component {
           spinnerProps={ spinner }/>
       )
     } else {
-      return this.mainView()
+      return this.renderMainView()
     }
   };
 
-  mainView(){
+  renderMainView(){
     return(
       <ListView
         style={{flex:1}}
         dataSource={ this.props.bars.dataSource }
         renderRow={
           (data,sectionId,rowId) => {
-            return <BarRow key={data.id} data={data} />
+            return <BarRow key={data.id} data={data}
+              onPress={ () => this.props.pushRoute({...BarDetail,bar:data}) } />
           }
         }
         renderSectionHeader={
