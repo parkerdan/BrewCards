@@ -1,10 +1,11 @@
 'use strict'
 
+// React
 import React from 'react';
 import { StyleSheet, View, Text, Linking, TouchableOpacity } from 'react-native';
 
+// Styles
 import colors from '../styles/colors';
-
 const styles = StyleSheet.create({
   container: {
     flexDirection:'column',
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     color: colors.watermelon,
     fontSize:14
   }
-})
+});
 
 export default class Footer extends React.Component {
 

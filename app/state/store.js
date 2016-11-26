@@ -11,11 +11,11 @@ import navReducer from './reducers/navReducer';
 import cardsReducer from './reducers/cardsReducer';
 
 const middleware = () => {
-  if (__DEV__) {
-    return applyMiddleware(thunk,logger())
-  } else {
+  // if (__DEV__) {
+  //   return applyMiddleware(thunk,logger())
+  // } else {
     return applyMiddleware(thunk)
-  }
+  // }
 }
 
 

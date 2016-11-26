@@ -1,7 +1,10 @@
 'use strict'
 
+// React
 import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
+
+// Styles
 import { bars } from '../styles/bars';
 
 export default class BarRow extends React.Component {

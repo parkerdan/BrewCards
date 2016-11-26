@@ -42,7 +42,7 @@ export const getBars = (attempt) => {
     fetch(Api.getBars, {method:'get',headers:Api.headers} )
     .then((res) => Api.checkStatus(res))
     .then((res) => dispatch(allBarsFulfilled(res.response)))
-    .catch((e) => {
+    .catch((e) => { console.log(e);
       // try again if error in case of server hiccup
       if (requestNumber < 3) {
         dispatch(getBars(requestNumber))

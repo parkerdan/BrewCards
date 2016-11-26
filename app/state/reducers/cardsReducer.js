@@ -8,7 +8,7 @@ const defaultState = {
   dataSource: false,
   errorMessage: null,
   cards: false,
-  index:0
+  index:0,
 }
 
 const cardsReducer = (state=defaultState,action) => {

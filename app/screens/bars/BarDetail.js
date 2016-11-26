@@ -95,15 +95,15 @@ class BarDetail extends React.Component {
       return(
         <View style={{flex:1}}>
           <Header
-            backgroundColor={ cards[index].backgroundColor }
+            backgroundColor={ headerColor }
             height={ headerHeight }
 
-            leftIconProps={{ ...backIcon, color:cards[index].textColor }}
+            leftIconProps={ backIcon }
             onLeftPress={ this.onLeftPress }
 
             centerText={ this.props.bar.title }
             centerTextProps={{
-              style:[header.centerText,{color:cards[index].textColor  }],
+              style:header.centerText,
               numberOfLines:1
             }}
           />
