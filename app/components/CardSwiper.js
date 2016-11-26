@@ -2,7 +2,7 @@
 
 // React
 import React from 'react';
-import { View, Text, Animated, PanResponder, Dimensions, Image } from 'react-native';
+import { View, Text, Animated, PanResponder, Image } from 'react-native';
 import clamp from 'clamp';
 
 // Views
@@ -11,8 +11,6 @@ import ImageArray from '../images/ImageArray';
 //Styles
 import { card } from '../styles/card';
 
-
-const { height,width } = Dimensions.get('window');
 const SWIPE_THRESHOLD = 120;
 
 
@@ -103,11 +101,6 @@ export default class CardSwiper extends React.Component {
     this.animateEntrance();
   };
 
-  addOpactiy = (rgb) => {
-    var result = rgb.replace(')', ', .3)').replace('rgb', 'rgba');
-    return result
-  };
-
   render() {
     let { pan, enter } = this.state;
 
@@ -134,7 +127,7 @@ export default class CardSwiper extends React.Component {
 
     return (
       <View style={[card.container,{
-        backgroundColor: this.addOpactiy(this.props.cards[this.props.index].backgroundColor),
+        backgroundColor: this.props.addOpacity(this.props.cards[this.props.index].backgroundColor),
       }]}
       >
         <Animated.View

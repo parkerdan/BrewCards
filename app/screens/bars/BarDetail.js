@@ -51,11 +51,16 @@ class BarDetail extends React.Component {
   componentDidMount(){
     this.props.getCards(this.props.bar.id);
     InteractionManager.runAfterInteractions( () => this.setState({interactionsRunning:false}) )
-  }
+  };
 
   onLeftPress = () => {
     this.props.popRoute()
-  }
+  };
+
+  addOpacity = (rgb) => {
+    var result = rgb.replace(')', ', .3)').replace('rgb', 'rgba');
+    return result
+  };
 
   render(){
     return(
@@ -84,14 +89,6 @@ class BarDetail extends React.Component {
         />
       )
     } else {
-      return this.renderMainView()
-    }
-  };
-
-  renderMainView(){
-    let { cards,index } = this.props.cards;
-
-    if (this.props.settings.showSwiper) {
       return(
         <View style={{flex:1}}>
           <Header
@@ -107,25 +104,27 @@ class BarDetail extends React.Component {
               numberOfLines:1
             }}
           />
+          {this.renderUserOption()}
 
-          <CardSwiper
-            changeIndex={ (newIndex) => this.props.changeCardIndex(newIndex) }
-            cards={ cards }
-            index={ index }
-          />
         </View>
       )
-    } else {
+    }
+  };
+
+  renderUserOption(){
+    let { cards,index } = this.props.cards;
+
+    if (this.props.settings.showSwiper) {
       return(
-        <CardScroller
-          headerHeight={ headerHeight }
-          centerText={ this.props.bar.title }
-          centerTextStyle={ header.centerText }
-          onLeftPress={ this.onLeftPress }
-          leftIconProps={ backIcon }
+        <CardSwiper
+          addOpacity={ this.addOpacity }
+          changeIndex={ (newIndex) => this.props.changeCardIndex(newIndex) }
           cards={ cards }
+          index={ index }
         />
       )
+    } else {
+      return <CardScroller cards={ cards } addOpacity={ this.addOpacity } />
     }
   };
 

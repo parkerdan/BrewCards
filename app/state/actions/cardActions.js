@@ -2,24 +2,6 @@
 
 import Cards from '../actionTypes/cardActionTypes';
 import Api from '../../api/Api';
-import { ListView } from 'react-native';
-
-// const ds = new ListView.DataSource({rowHasChanged: (r1,r2) => r1 !== r2,sectionHeaderHasChanged: (s1,s2) => s1 !== s2});
-//
-//
-//
-// const constructDataBlob = (array) => {
-//   let blob = {};
-//   for (var i = 0; i < array.length; i++) {
-//     let firstLetter = array[i].title.charAt(0);
-//     if (blob.hasOwnProperty(firstLetter)) {
-//       blob[firstLetter].push(array[i])
-//     } else {
-//       blob[firstLetter] = [array[i]]
-//     }
-//   }
-//   return ds.cloneWithRowsAndSections(blob)
-// }
 
 const requestPending = () => {
   return {type: Cards.CARD_REQUEST_PENDING }
