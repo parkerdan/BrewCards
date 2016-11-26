@@ -5,6 +5,7 @@ export default cardActionTypes([
   'CARD_REQUEST_PENDING',
   'CARD_REQUEST_FULFILLED',
   'CARD_REQUEST_ERROR',
+  'CHANGE_CARD_INDEX'
 ]);
 
 function cardActionTypes(names) {

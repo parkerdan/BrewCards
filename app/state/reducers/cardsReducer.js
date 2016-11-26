@@ -34,6 +34,10 @@ const cardsReducer = (state=defaultState,action) => {
       }
       break;
 
+    case Cards.CHANGE_CARD_INDEX:
+      return { ...state, index: action.payload }
+      break;
+
   }
   return state
 }

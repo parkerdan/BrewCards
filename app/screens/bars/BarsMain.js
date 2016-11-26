@@ -26,14 +26,14 @@ import { SettingsMain, BarDetail } from '../../state/navigation/routes';
 
 const mapStateToProps = (state) => {
   return {bars:state.bars}
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getBars: () => dispatch(getBars()),
     pushRoute: (route) => dispatch(pushRoute(route))
   }
-}
+};
 
 class BarsMain extends React.Component {
 
@@ -48,30 +48,33 @@ class BarsMain extends React.Component {
             backgroundColor={ headerColor }
             height={ headerHeight }
             centerText={ 'Brew Cards' }
-            centerTextProps={ {style:header.centerText} }
+            centerTextProps={{ style:header.centerText }}
             rightIconProps={ settingsIcon }
             onRightPress={ () => this.props.pushRoute(SettingsMain) }
           />
           { this.renderLoading() }
-          <Footer />
+          <Footer/>
         </View>
       )
   };
 
   renderLoading(){
     if ( !this.props.bars.dataSource ) {
+      let { requestError, errorMessage } = this.props.bars;
+
       return(
         <LoadingView
           text={ 'Getting information...' }
           textProps={{ style: loading.text }}
-          renderButton={ this.props.bars.requestError }
-          buttonText={   this.props.bars.errorMessage }
+          renderButton={ requestError }
+          spinnerProps={ spinner }
+          buttonText={ errorMessage }
           buttonTextProps={{ style: loading.buttonText }}
           buttonProps={{
             style: loading.button,
             onPress: () => this.props.getBars()
           }}
-          spinnerProps={ spinner }/>
+        />
       )
     } else {
       return this.renderMainView()
@@ -85,13 +88,24 @@ class BarsMain extends React.Component {
         dataSource={ this.props.bars.dataSource }
         renderRow={
           (data,sectionId,rowId) => {
-            return <BarRow key={data.id} data={data}
-              onPress={ () => this.props.pushRoute({...BarDetail,bar:data}) } />
+            return(
+              <BarRow
+                key={data.id}
+                data={data}
+                onPress={ () => this.props.pushRoute({...BarDetail,bar:data}) }
+              />
+            )
           }
         }
         renderSectionHeader={
           (sectionData, sectionID) => {
-            return <BarSectionHeader key={sectionID} count={sectionData.length} title={sectionID} />
+            return(
+              <BarSectionHeader
+                key={sectionID}
+                count={sectionData.length}
+                title={sectionID}
+              />
+            )
           }
         }
       />

@@ -33,6 +33,10 @@ const cardsFulfilled = (res) => {
   return {type:Cards.CARD_REQUEST_FULFILLED, payload: res }
 }
 
+export const changeCardIndex = (newIndex) => {
+  return {type:Cards.CHANGE_CARD_INDEX, payload: newIndex}
+}
+
 export const getCards = (barId,attempt) => {
   let requestNumber = (attempt) ? attempt + 1:1;
   return (dispatch) => {

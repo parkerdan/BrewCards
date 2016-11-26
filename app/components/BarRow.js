@@ -1,63 +1,36 @@
 'use strict'
 
 import React from 'react';
-import { View, TouchableOpacity, Text, PixelRatio, StyleSheet } from 'react-native';
-
-import colors from '../styles/colors'
-
-const styles = StyleSheet.create({
-  container: {
-    padding:12,
-    flexDirection:'row',
-    backgroundColor:colors.sky,
-    alignItems:'center',
-    borderWidth:1/PixelRatio.get(),
-    marginHorizontal:5,
-    overflow:'hidden',
-    borderRadius: 10,
-    marginBottom:5,
-  },
-  titleContainer: {
-    flex:2,
-    justifyContent: 'center',
-    flexWrap:'wrap',
-  },
-  countContainer: {
-    flex:1,
-    justifyContent:'center',
-    alignItems: 'flex-end',
-  },
-  text: {
-    fontSize:22,
-    color: colors.watermelon,
-  }
-});
-
+import { View, TouchableOpacity, Text } from 'react-native';
+import { bars } from '../styles/bars';
 
 export default class BarRow extends React.Component {
   render(){
     let cards = (this.props.data.cardCount > 1) ? '-Cards':'-Card';
     return(
       <TouchableOpacity
-        onPress={ this.props.onPress }>
-        <View style={ styles.container }>
+        style={ bars.rowContainer }
+        onPress={ this.props.onPress }
+      >
 
-          <View style={ styles.titleContainer }>
-            <Text
-              numberOfLines={3}
-              style={ styles.text }>
-              {this.props.data.title}
-            </Text>
-          </View>
-
-          <View style={ styles.countContainer }>
-            <Text
-              numberOfLines={1}
-              style={ styles.text }>
-              {this.props.data.cardCount + cards}
-            </Text>
-          </View>
+        <View style={ bars.titleContainer }>
+          <Text
+            numberOfLines={3}
+            style={ bars.text }
+          >
+            {this.props.data.title}
+          </Text>
         </View>
+
+        <View style={ bars.countContainer }>
+          <Text
+            numberOfLines={1}
+            style={ bars.text }
+          >
+            {this.props.data.cardCount + cards}
+          </Text>
+        </View>
+
       </TouchableOpacity>
     )
   };

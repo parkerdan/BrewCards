@@ -6,7 +6,7 @@ import { View, InteractionManager } from 'react-native';
 
 // Redux
 import { connect } from 'react-redux';
-import { getCards, doneViewingCards } from '../../state/actions/cardActions';
+import { getCards, changeCardIndex } from '../../state/actions/cardActions';
 import { pushRoute, popRoute } from '../../state/actions/navActions';
 
 // Style
@@ -28,26 +28,25 @@ const mapStateToProps = (state) => {
     settings:state.settings,
     cards: state.cards,
    }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     pushRoute: (route) => dispatch(pushRoute(route)),
     popRoute: () => dispatch(popRoute()),
     getCards: (barId) => dispatch(getCards(barId)),
+    changeCardIndex: (newIndex) => dispatch(changeCardIndex(newIndex))
   }
-}
+};
 
 
 class BarDetail extends React.Component {
 
   constructor(){
     super();
-    this.state = {
-      index:0,
-      interactionsRunning:true
-    }
-  }
+    // I do not know of a rudux way to handle this.  Having InteractionManager change the state of the actual scene allows for better transitions... this is the only state outside of Redux...
+    this.state = { interactionsRunning:true }
+  };
 
   componentDidMount(){
     this.props.getCards(this.props.bar.id);
@@ -68,18 +67,21 @@ class BarDetail extends React.Component {
 
   renderLoading(){
     if (  this.state.interactionsRunning || !this.props.cards ) {
+      let { requestError, errorMessage } = this.props.cards;
+
       return(
         <LoadingView
           text={ 'Getting information...' }
           textProps={{ style: loading.text }}
-          renderButton={ this.props.cards.requestError }
-          buttonText={   this.props.cards.errorMessage }
+          renderButton={ requestError }
+          spinnerProps={ spinner }
+          buttonText={ errorMessage }
           buttonTextProps={{ style: loading.buttonText }}
           buttonProps={{
             style: loading.button,
             onPress: () => this.props.getCards(this.props.bar.id)
           }}
-          spinnerProps={ spinner }/>
+        />
       )
     } else {
       return this.renderMainView()
@@ -87,21 +89,30 @@ class BarDetail extends React.Component {
   };
 
   renderMainView(){
+    let { cards,index } = this.props.cards;
+
     if (this.props.settings.showSwiper) {
       return(
         <View style={{flex:1}}>
           <Header
-            backgroundColor={ this.props.cards.cards[this.state.index].backgroundColor }
+            backgroundColor={ cards[index].backgroundColor }
             height={ headerHeight }
-            centerText={ this.props.bar.title }
-            centerTextProps={ {style:[header.centerText,{color:this.props.cards.cards[this.state.index].textColor  }],numberOfLines:1} }
-            leftIconProps={ {...backIcon,color:this.props.cards.cards[this.state.index].textColor} }
+
+            leftIconProps={{ ...backIcon, color:cards[index].textColor }}
             onLeftPress={ this.onLeftPress }
+
+            centerText={ this.props.bar.title }
+            centerTextProps={{
+              style:[header.centerText,{color:cards[index].textColor  }],
+              numberOfLines:1
+            }}
           />
 
           <CardSwiper
-            changeIndex={ (index) => this.setState({index:index}) }
-            cards={this.props.cards.cards} index={this.state.index} />
+            changeIndex={ (newIndex) => this.props.changeCardIndex(newIndex) }
+            cards={ cards }
+            index={ index }
+          />
         </View>
       )
     } else {
@@ -112,7 +123,8 @@ class BarDetail extends React.Component {
           centerTextStyle={ header.centerText }
           onLeftPress={ this.onLeftPress }
           leftIconProps={ backIcon }
-          cards={this.props.cards.cards} />
+          cards={ cards }
+        />
       )
     }
   };

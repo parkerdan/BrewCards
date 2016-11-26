@@ -23,7 +23,7 @@ import Footer from '../../components/Footer';
 
 const mapStateToProps = (state) => {
   return {settings:state.settings}
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -31,7 +31,7 @@ const mapDispatchToProps = (dispatch) => {
     showSwiper: () => dispatch(showSwiper()),
     showScroll: () => dispatch(showScroll())
   }
-}
+};
 
 
 
@@ -39,9 +39,8 @@ class SettingsMain extends React.Component {
 
   constructor(){
     super();
-    this.state = {
-      interactionsRunning: true
-    };
+    // I do not know of a rudux way to handle this.  Having InteractionManager change the state of the actual scene allows for better transitions... this is the only state outside of Redux...
+    this.state = { interactionsRunning: true }
   };
 
   componentDidMount(){
@@ -50,17 +49,17 @@ class SettingsMain extends React.Component {
 
   render(){
     return(
-      <View style={loading.container}>
+      <View style={ loading.container }>
         <Header
           backgroundColor={ headerColor }
           height={ headerHeight }
           centerText={ 'Settings' }
-          centerTextProps={ {style:header.centerText} }
+          centerTextProps={{ style:header.centerText }}
           leftIconProps={ backIcon }
           onLeftPress={ () => this.props.popRoute() }
         />
         { this.renderLoading() }
-        <Footer />
+        <Footer/>
       </View>
     )
   };
@@ -75,31 +74,30 @@ class SettingsMain extends React.Component {
 
   renderMainView(){
     return(
-      <View style={{flex:1}}>
-        <Text style={settings.heading}>How would your cards presented?</Text>
-        <TouchableOpacity
-          onPress={ () => this.props.showSwiper() }
-          style={ settings.optionContainer }>
-          <View style={ settings.textContainer }>
-            <Text style={ settings.text }>{'Swiper!!  Swiper is great!'}</Text>
-          </View>
-          <View style={ settings.iconContainer }>
-            { this.renderCheck(true) }
-          </View>
-        </TouchableOpacity>
+      <View style={{ flex:1 }}>
+        <Text style={ settings.heading }>How would your cards presented?</Text>
+        
+        { this.renderOption( () => this.props.showSwiper(), 'Swiper!!  Swiper is great!', true ) }
 
-        <TouchableOpacity
-          onPress={ () => this.props.showScroll() }
-          style={ settings.optionContainer }>
-          <View style={ settings.textContainer }>
-            <Text style={ settings.text }>{'Scroll...it works better on Android'}</Text>
-          </View>
-          <View style={ settings.iconContainer }>
-            { this.renderCheck(false) }
-          </View>
-        </TouchableOpacity>
+        { this.renderOption( () => this.props.showScroll(), 'Scroll!! I like to scroll!', false ) }
 
       </View>
+    )
+  };
+
+  renderOption(onPress, text, isSwiper){
+    return(
+      <TouchableOpacity
+        onPress={ onPress }
+        style={ settings.optionContainer }
+      >
+        <View style={ settings.textContainer }>
+          <Text style={ settings.text }>{ text }</Text>
+        </View>
+        <View style={ settings.iconContainer }>
+          { this.renderCheck(isSwiper) }
+        </View>
+      </TouchableOpacity>
     )
   };
 
