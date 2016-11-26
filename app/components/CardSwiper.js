@@ -96,7 +96,7 @@ export default class CardSwiper extends React.Component {
 
   resetState = (swipeDirection) => {
     this.state.pan.setValue({x: 0, y: 0});
-    this.state.enter.setValue(0);
+    this.state.enter.setValue(0.2);
     this.nextCard(swipeDirection);
     this.animateEntrance();
   };
