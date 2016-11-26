@@ -11,7 +11,7 @@ import { pushRoute, popRoute } from '../../state/actions/navActions';
 
 // Style
 import { spinner, loading  } from '../../styles/loading';
-import { header, headerHeight, headerColor, recipeIcon, backIcon } from '../../styles/header';
+import { header, headerHeight, headerColor, recipeIcon, closeIcon } from '../../styles/header';
 
 // Views
 import LoadingView from 'rn-loading-view';
@@ -73,7 +73,6 @@ class BarDetail extends React.Component {
   renderLoading(){
     if (  this.state.interactionsRunning || !this.props.cards ) {
       let { requestError, errorMessage } = this.props.cards;
-
       return(
         <LoadingView
           text={ 'Getting information...' }
@@ -89,14 +88,20 @@ class BarDetail extends React.Component {
         />
       )
     } else {
+      let { cards, index } = this.props.cards;
       return(
         <View style={{flex:1}}>
           <Header
             backgroundColor={ headerColor }
             height={ headerHeight }
 
-            leftIconProps={ backIcon }
+            leftIconProps={ closeIcon }
             onLeftPress={ this.onLeftPress }
+
+            rightIconProps={ (cards[index].recipe) ?  recipeIcon:false }
+            onRightPress={
+              () => this.props.pushRoute({...Recipe,recipe:cards[index].recipe, title:cards[index].title  })
+            }
 
             centerText={ this.props.bar.title }
             centerTextProps={{
@@ -124,7 +129,13 @@ class BarDetail extends React.Component {
         />
       )
     } else {
-      return <CardScroller cards={ cards } addOpacity={ this.addOpacity } />
+      return(
+         <CardScroller
+           cards={ cards }
+           addOpacity={ this.addOpacity }
+           changeIndex={ (newIndex) => this.props.changeCardIndex(newIndex) }
+         />
+      )
     }
   };
 

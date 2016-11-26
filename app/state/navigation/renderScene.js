@@ -4,6 +4,7 @@ import React from 'react';
 import BarsMain from '../../screens/bars/BarsMain';
 import BarDetail from '../../screens/bars/BarDetail';
 import SettingsMain from '../../screens/settings/SettingsMain';
+import Recipe from '../../screens/bars/Recipe';
 
 import * as routes from './routes';
 
@@ -19,7 +20,11 @@ export default function renderScene( data ){
       break;
 
     case routes.BarDetail.key:
-    return <BarDetail bar={data.scene.route.bar} />
+    return <BarDetail {...data.scene.route} />
+      break;
+
+    case routes.Recipe.key:
+    return <Recipe {...data.scene.route} />
       break;
 
     default:

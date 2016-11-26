@@ -2,7 +2,7 @@
 
 //React
 import React from 'react';
-import { View, Text, Image, ScrollView } from 'react-native';
+import { View, Text, Image, ScrollView, Dimensions } from 'react-native';
 
 // Views
 import ImageArray from '../images/ImageArray';
@@ -10,7 +10,19 @@ import ImageArray from '../images/ImageArray';
 //Styles
 import { card } from '../styles/card';
 
+const { width } = Dimensions.get('window');
+
+const w = Math.floor(width);
+
 export default class CardScroller extends React.Component {
+
+  onScroll = (xOffset) => {
+    if (xOffset === 0) {
+      this.props.changeIndex(0)
+    } else if (xOffset % w === 0) {
+      this.props.changeIndex(xOffset/w)
+    }
+  };
 
   render(){
 
@@ -62,6 +74,8 @@ export default class CardScroller extends React.Component {
 
     return(
       <ScrollView
+        onScroll={ (e) => this.onScroll(e.nativeEvent.contentOffset.x) }
+        scrollEventThrottle={0}
         pagingEnabled={true}
         horizontal={true}>
         {cards}
