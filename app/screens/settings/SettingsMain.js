@@ -75,8 +75,8 @@ class SettingsMain extends React.Component {
   renderMainView(){
     return(
       <View style={{ flex:1 }}>
-        <Text style={ settings.heading }>How would your cards presented?</Text>
-        
+        <Text style={ settings.heading }>How would you like your cards presented?</Text>
+
         { this.renderOption( () => this.props.showSwiper(), 'Swiper!!  Swiper is great!', true ) }
 
         { this.renderOption( () => this.props.showScroll(), 'Scroll!! I like to scroll!', false ) }
