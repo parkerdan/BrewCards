@@ -10,7 +10,7 @@ import { getBars } from '../../state/actions/barActions';
 import { pushRoute } from '../../state/actions/navActions';
 
 // Style
-import { spinner, loading  } from '../../styles/loading';
+import { spinner, loading, noSpinner  } from '../../styles/loading';
 import { header, headerHeight, headerColor, settingsIcon } from '../../styles/header';
 
 // Views
@@ -64,10 +64,10 @@ class BarsMain extends React.Component {
 
       return(
         <LoadingView
-          text={ 'Getting information...' }
+          text={ (requestError) ? '':'Getting information...' }
           textProps={{ style: loading.text }}
           renderButton={ requestError }
-          spinnerProps={ spinner }
+          spinnerProps={ (requestError) ? noSpinner:spinner }
           buttonText={ errorMessage }
           buttonTextProps={{ style: loading.buttonText }}
           buttonProps={{

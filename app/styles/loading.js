@@ -25,3 +25,4 @@ export const loading = StyleSheet.create({
 })
 
 export const spinner = {size:'large',color:colors.watermelon}
+export const noSpinner = {animating:false}

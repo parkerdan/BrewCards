@@ -10,7 +10,7 @@ import { getCards, changeCardIndex } from '../../state/actions/cardActions';
 import { pushRoute, popRoute } from '../../state/actions/navActions';
 
 // Style
-import { spinner, loading  } from '../../styles/loading';
+import { spinner, loading, noSpinner  } from '../../styles/loading';
 import { header, headerHeight, headerColor, recipeIcon, closeIcon } from '../../styles/header';
 
 // Views
@@ -71,21 +71,36 @@ class BarDetail extends React.Component {
   };
 
   renderLoading(){
-    if (  this.state.interactionsRunning || !this.props.cards ) {
+    if (  this.state.interactionsRunning || this.props.cards.cards.length === 0 ) {
       let { requestError, errorMessage } = this.props.cards;
       return(
-        <LoadingView
-          text={ 'Getting information...' }
-          textProps={{ style: loading.text }}
-          renderButton={ requestError }
-          spinnerProps={ spinner }
-          buttonText={ errorMessage }
-          buttonTextProps={{ style: loading.buttonText }}
-          buttonProps={{
-            style: loading.button,
-            onPress: () => this.props.getCards(this.props.bar.id)
-          }}
-        />
+        <View style={{flex:1}}>
+          <Header
+            backgroundColor={ headerColor }
+            height={ headerHeight }
+
+            leftIconProps={ closeIcon }
+            onLeftPress={ this.onLeftPress }
+
+            centerText={ this.props.bar.title }
+            centerTextProps={{
+              style:header.centerText,
+              numberOfLines:1
+            }}
+          />
+          <LoadingView
+            text={ (requestError) ? '':'Getting information...' }
+            textProps={{ style: loading.text }}
+            renderButton={ requestError }
+            spinnerProps={ (requestError) ? noSpinner:spinner }
+            buttonText={ errorMessage }
+            buttonTextProps={{ style: loading.buttonText }}
+            buttonProps={{
+              style: loading.button,
+              onPress: () => this.props.getCards(this.props.bar.id)
+            }}
+          />
+        </View>
       )
     } else {
       let { cards, index } = this.props.cards;

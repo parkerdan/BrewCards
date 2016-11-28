@@ -29,9 +29,16 @@ export const getCards = (barId,attempt) => {
 
     fetch(Api.getCards, {method:'get',headers: {...Api.headers,'Bar-Id':barId} } )
     .then((res) => Api.checkStatus(res))
-    .then((res) => dispatch(cardsFulfilled(res.response)))
+    .then((res) => {
+      // check for proper response, and having content length or else dispatch an error
+      if (res.response && res.response.length > 0) {
+        dispatch(cardsFulfilled(res.response))
+      } else {
+        dispatch(requestError())
+      }
+    })
     .catch((e) => {
-      // try again if error in case of server hiccup
+      // try again if error in case of server hiccup or dispatch an error
       if (requestNumber < 3) {
         dispatch(getCards(barId,requestNumber))
       } else {

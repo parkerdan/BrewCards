@@ -41,9 +41,16 @@ export const getBars = (attempt) => {
 
     fetch(Api.getBars, {method:'get',headers:Api.headers} )
     .then((res) => Api.checkStatus(res))
-    .then((res) => dispatch(allBarsFulfilled(res.response)))
-    .catch((e) => { console.log(e);
-      // try again if error in case of server hiccup
+    .then((res) => {
+      // check for proper response, and having content length or else dispatch an error
+      if (res.response && res.response.length > 0) {
+        dispatch(allBarsFulfilled(res.response))
+      } else {
+        dispatch(requestError())
+      }
+    })
+    .catch((e) => {
+      // try again if error in case of server hiccup or dispatch an error
       if (requestNumber < 3) {
         dispatch(getBars(requestNumber))
       } else {

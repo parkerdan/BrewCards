@@ -7,7 +7,7 @@ const defaultState = {
   requestError: false,
   dataSource: false,
   errorMessage: null,
-  cards: false,
+  cards: [],
   index:0,
 }
 
