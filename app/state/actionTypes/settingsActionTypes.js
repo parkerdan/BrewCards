@@ -2,7 +2,7 @@
 
 export default settingsActionTypes([
   'SHOW_SWIPER',
-  'SHOW_SCROLL'
+  'SHOW_SCROLL',
 ]);
 
 function settingsActionTypes(names) {

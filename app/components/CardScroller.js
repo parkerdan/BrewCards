@@ -75,7 +75,7 @@ export default class CardScroller extends React.Component {
     return(
       <ScrollView
         onScroll={ (e) => this.onScroll(e.nativeEvent.contentOffset.x) }
-        scrollEventThrottle={0}
+        scrollEventThrottle={10}
         pagingEnabled={true}
         horizontal={true}>
         {cards}

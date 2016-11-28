@@ -17,7 +17,8 @@ export default class Navigator extends React.Component {
       if (res) {
          (JSON.parse(res).showSwiper) ? this.props.showSwiper():this.props.showScroll();
       }
-    }).done()
+    }).done();
+    this.props.checkAppVersion()
   };
 
   componentWillUnmount() {

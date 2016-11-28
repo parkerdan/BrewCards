@@ -3,7 +3,7 @@
 import { connect } from 'react-redux';
 import Navigator from './Navigator';
 import { pushRoute, popRoute } from '../actions/navActions';
-import { showSwiper, showScroll } from '../actions/settingsActions';
+import { showSwiper, showScroll, checkAppVersion } from '../actions/settingsActions';
 
 
 const mapStateToProps = (state) => {
@@ -17,7 +17,8 @@ const mapDispatchToProps = (dispatch) => {
     pushRoute: (route) => dispatch(pushRoute(route)),
     popRoute: () => dispatch(popRoute()),
     showSwiper: () => dispatch(showSwiper()),
-    showScroll: () => dispatch(showScroll())
+    showScroll: () => dispatch(showScroll()),
+    checkAppVersion: () => dispatch(checkAppVersion())
   };
 };
 
