@@ -6,21 +6,21 @@ import { View, InteractionManager } from 'react-native';
 
 // Redux
 import { connect } from 'react-redux';
-import { getCards, changeCardIndex } from '../../state/actions/cardActions';
-import { pushRoute, popRoute } from '../../state/actions/navActions';
+import { getCards, changeCardIndex } from '../cards/actions';
+import { pushRoute, popRoute } from '../navigation/actions';
 
 // Style
-import { spinner, loading, noSpinner  } from '../../styles/loading';
-import { header, headerHeight, headerColor, recipeIcon, closeIcon } from '../../styles/header';
+import { spinner, loading, noSpinner  } from '../styles/loading';
+import { header, headerHeight, headerColor, recipeIcon, closeIcon } from '../styles/header';
 
 // Views
 import LoadingView from 'rn-loading-view';
 import Header from 'rn-header';
-import CardSwiper from '../../components/CardSwiper';
-import CardScroller from '../../components/CardScroller';
+import CardSwiper from '../cards/CardSwiper';
+import CardScroller from '../cards/CardScroller';
 
 // Routes
-import { Recipe } from '../../state/navigation/routes';
+import { Recipe } from '../navigation/routes';
 
 
 const mapStateToProps = (state) => {

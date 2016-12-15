@@ -1,7 +1,7 @@
 'use strict'
 
-import Bars from '../actionTypes/barActionTypes';
-import Api from '../../api/Api';
+import Bars from './actionTypes';
+import Api from '../api/Api';
 import { ListView } from 'react-native';
 
 const ds = new ListView.DataSource({rowHasChanged: (r1,r2) => r1 !== r2,sectionHeaderHasChanged: (s1,s2) => s1 !== s2});

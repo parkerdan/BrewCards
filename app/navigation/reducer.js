@@ -1,7 +1,7 @@
 'use strict'
 
-import Nav from '../actionTypes/navActionTypes';
-import { BarsMain } from '../navigation/routes';
+import Nav from './actionTypes';
+import { BarsMain } from './routes';
 import { NavigationExperimental } from 'react-native';
 
 const {
@@ -14,7 +14,7 @@ const defaultState = {
   routes: [ BarsMain ]
 }
 
-const navReducer = (state=defaultState,action) => {
+const reducer = (state=defaultState,action) => {
 
   switch (action.type) {
     case Nav.PUSH_ROUTE:
@@ -25,8 +25,13 @@ const navReducer = (state=defaultState,action) => {
       return NavigationStateUtils.pop(state)
       break;
 
+    case Nav.RESET_STACK:
+      let routeIndex = action.payload.length - 1
+      return NavigationStateUtils.reset({ ...state}, action.payload, routeIndex)
+      break;
+
   }
   return state
 }
 
-export default navReducer;
+export default reducer;

@@ -8,12 +8,20 @@
  */
 
 #import "AppDelegate.h"
-
 #import "RCTBundleURLProvider.h"
 #import "RCTRootView.h"
 #import "RCTSplashScreen.h"
+#import "RCTLinkingManager.h"
 
 @implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity
+ restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler
+{
+ return [RCTLinkingManager application:application
+                  continueUserActivity:userActivity
+                    restorationHandler:restorationHandler];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

@@ -1,6 +1,6 @@
 'use strict'
 
-import Bars from '../actionTypes/barActionTypes';
+import Bars from './actionTypes';
 
 const defaultState = {
   requestPending: false,
@@ -9,7 +9,7 @@ const defaultState = {
   errorMessage: null,
 }
 
-const barReducer = (state=defaultState,action) => {
+const reducer = (state=defaultState,action) => {
   switch (action.type) {
     case Bars.BAR_REQUEST_PENDING:
       return { ...defaultState, requestPending:true }
@@ -36,4 +36,4 @@ const barReducer = (state=defaultState,action) => {
   return state
 }
 
-export default barReducer;
+export default reducer;

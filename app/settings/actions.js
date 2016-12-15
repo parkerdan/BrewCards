@@ -1,7 +1,7 @@
 'use strict'
 
-import Settings from '../actionTypes/settingsActionTypes';
-import Api from '../../api/Api';
+import Settings from './actionTypes';
+import Api from '../api/Api';
 
 import { Platform, Alert, Linking } from 'react-native';
 
@@ -14,7 +14,7 @@ export const showSwiper = () => {
 }
 
 const getUpdate = () => {
-  Linking.openUrl(Api.sendToAppStore)
+  Linking.openURL(Api.sendToAppStore)
   .catch((e) => {
     Alert.alert('Unable to launch App Store','Go to App Store on your device to update',[
       {text:' OK '}

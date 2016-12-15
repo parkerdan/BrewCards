@@ -1,6 +1,6 @@
 'use strict'
 
-import Cards from '../actionTypes/cardActionTypes';
+import Cards from './actionTypes';
 
 const defaultState = {
   requestPending: false,
@@ -11,7 +11,7 @@ const defaultState = {
   index:0,
 }
 
-const cardsReducer = (state=defaultState,action) => {
+const reducer = (state=defaultState,action) => {
   switch (action.type) {
     case Cards.CARD_REQUEST_PENDING:
       return { ...defaultState, requestPending:true }
@@ -42,4 +42,4 @@ const cardsReducer = (state=defaultState,action) => {
   return state
 }
 
-export default cardsReducer;
+export default reducer;

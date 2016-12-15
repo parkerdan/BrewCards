@@ -6,22 +6,22 @@ import { View, ListView } from 'react-native';
 
 // Redux
 import { connect } from 'react-redux';
-import { getBars } from '../../state/actions/barActions';
-import { pushRoute } from '../../state/actions/navActions';
+import { getBars } from './actions';
+import { pushRoute } from '../navigation/actions';
 
 // Style
-import { spinner, loading, noSpinner  } from '../../styles/loading';
-import { header, headerHeight, headerColor, settingsIcon } from '../../styles/header';
+import { spinner, loading, noSpinner  } from '../styles/loading';
+import { header, headerHeight, headerColor, settingsIcon } from '../styles/header';
 
 // Views
 import LoadingView from 'rn-loading-view';
 import Header from 'rn-header';
-import Footer from '../../components/Footer';
-import BarRow from '../../components/BarRow';
-import BarSectionHeader from '../../components/BarSectionHeader';
+import Footer from '../components/Footer';
+import BarRow from '../components/BarRow';
+import BarSectionHeader from '../components/BarSectionHeader';
 
 // Routes
-import { SettingsMain, BarDetail } from '../../state/navigation/routes';
+import { Settings, BarDetail } from '../navigation/routes';
 
 
 const mapStateToProps = (state) => {
@@ -50,7 +50,7 @@ class BarsMain extends React.Component {
             centerText={ 'Brew Cards' }
             centerTextProps={{ style:header.centerText }}
             rightIconProps={ settingsIcon }
-            onRightPress={ () => this.props.pushRoute(SettingsMain) }
+            onRightPress={ () => this.props.pushRoute(Settings) }
           />
           { this.renderLoading() }
           <Footer/>

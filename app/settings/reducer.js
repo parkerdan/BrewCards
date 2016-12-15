@@ -1,6 +1,6 @@
 'use strict'
 
-import Settings from '../actionTypes/settingsActionTypes';
+import Settings from './actionTypes';
 import { AsyncStorage } from 'react-native';
 
 
@@ -9,7 +9,7 @@ const defaultState = {
   appVersion: '1.3',
 }
 
-const settingsReducer = (state=defaultState,action) => {
+const reducer = (state=defaultState,action) => {
   switch (action.type) {
     case Settings.SHOW_SWIPER:
       var newState = { ...state,showSwiper:true}
@@ -27,4 +27,4 @@ const settingsReducer = (state=defaultState,action) => {
   return state
 }
 
-export default settingsReducer;
+export default reducer;

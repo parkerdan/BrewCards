@@ -6,17 +6,17 @@ import { View, Text, ScrollView } from 'react-native';
 
 // Redux
 import { connect } from 'react-redux';
-import { popRoute } from '../../state/actions/navActions';
+import { popRoute } from '../navigation/actions';
 
 // Style
-import { loading  } from '../../styles/loading';
-import { header, headerHeight, headerColor, backIcon } from '../../styles/header';
-import { card } from '../../styles/card';
-import colors from '../../styles/colors';
+import { loading  } from '../styles/loading';
+import { header, headerHeight, headerColor, backIcon } from '../styles/header';
+import { card } from '../styles/card';
+import colors from '../styles/colors';
 
 //Views
 import Header from 'rn-header';
-import Footer from '../../components/Footer';
+import Footer from '../components/Footer';
 
 const mapDispatchToProps = (dispatch) => {
   return {

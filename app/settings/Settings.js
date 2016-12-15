@@ -6,19 +6,19 @@ import { View, Text, TouchableOpacity, InteractionManager } from 'react-native';
 
 // Redux
 import { connect } from 'react-redux';
-import { showSwiper, showScroll } from '../../state/actions/settingsActions';
-import { popRoute } from '../../state/actions/navActions';
+import { showSwiper, showScroll } from './actions';
+import { popRoute } from '../navigation/actions';
 
 // Style
-import { spinner, loading  } from '../../styles/loading';
-import { header, headerHeight, headerColor, backIcon } from '../../styles/header';
-import { settings, checkIcon } from '../../styles/settings';
+import { spinner, loading  } from '../styles/loading';
+import { header, headerHeight, headerColor, backIcon } from '../styles/header';
+import { settings, checkIcon } from '../styles/settings';
 
 // Views
 import Header from 'rn-header';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LoadingView from 'rn-loading-view';
-import Footer from '../../components/Footer';
+import Footer from '../components/Footer';
 
 
 const mapStateToProps = (state) => {
@@ -35,7 +35,7 @@ const mapDispatchToProps = (dispatch) => {
 
 
 
-class SettingsMain extends React.Component {
+class Settings extends React.Component {
 
   constructor(){
     super();
@@ -111,4 +111,4 @@ class SettingsMain extends React.Component {
 
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(SettingsMain)
+export default connect(mapStateToProps,mapDispatchToProps)(Settings)

@@ -1,14 +1,15 @@
 'use strict'
+
 // redux stuffs
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
 // reducers
-import barsReducer from './reducers/barsReducer';
-import settingsReducer from './reducers/settingsReducer';
-import navReducer from './reducers/navReducer';
-import cardsReducer from './reducers/cardsReducer';
+import bars from './bars/reducer';
+import settings from './settings/reducer';
+import navigator from './navigation/reducer';
+import cards from './cards/reducer';
 
 const middleware = () => {
   // if (__DEV__) {
@@ -21,10 +22,10 @@ const middleware = () => {
 
 export default createStore(
   combineReducers({
-    bars: barsReducer,
-    settings:settingsReducer,
-    nav: navReducer,
-    cards: cardsReducer
+    bars: bars,
+    settings: settings,
+    navigator: navigator,
+    cards: cards
   }),
   middleware(),
 );

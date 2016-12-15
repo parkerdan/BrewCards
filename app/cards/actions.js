@@ -1,7 +1,7 @@
 'use strict'
 
-import Cards from '../actionTypes/cardActionTypes';
-import Api from '../../api/Api';
+import Cards from './actionTypes';
+import Api from '../api/Api';
 
 const requestPending = () => {
   return {type: Cards.CARD_REQUEST_PENDING }
