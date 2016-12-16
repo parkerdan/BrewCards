@@ -49,7 +49,7 @@ class BarDetail extends React.Component {
   };
 
   componentDidMount(){
-    this.props.getCards(this.props.bar.id);
+    this.props.getCards(this.props.id);
     InteractionManager.runAfterInteractions( () => this.setState({interactionsRunning:false}) )
   };
 
@@ -82,7 +82,7 @@ class BarDetail extends React.Component {
             leftIconProps={ closeIcon }
             onLeftPress={ this.onLeftPress }
 
-            centerText={ this.props.bar.title }
+            centerText={ 'Brew Cards' }
             centerTextProps={{
               style:header.centerText,
               numberOfLines:1
@@ -118,7 +118,7 @@ class BarDetail extends React.Component {
               () => this.props.pushRoute({...Recipe,recipe:cards[index].recipe, title:cards[index].title  })
             }
 
-            centerText={ this.props.bar.title }
+            centerText={ cards[0].barName }
             centerTextProps={{
               style:header.centerText,
               numberOfLines:1

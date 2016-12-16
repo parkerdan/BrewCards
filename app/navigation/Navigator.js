@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 // Functions
 import renderScene from './renderScene';
 import SplashScreen from 'react-native-smart-splash-screen';
-import { pushRoute, popRoute } from './actions';
+import { pushRoute, popRoute, resetStack } from './actions';
 import { showSwiper, showScroll, checkAppVersion } from '../settings/actions';
 
 // Routes
@@ -41,13 +41,16 @@ const mapDispatchToProps = (dispatch) => {
 class Navigator extends React.Component {
 
   componentDidMount() {
+
     Linking.getInitialURL()
     .then((url) => {
       if (url) {
         // this handles the case where hte app is closed and is launched via deep linking.
-        Alert.alert('GET INIT URL','initial url  ' + url)
+        // Alert.alert('GET INIT URL','initial url  ' + url)
         // console.log('Initial url is: ' + url);
-        // this.props.resetStack([BarsMain,BarDetail])
+        this.resetStackToProperRoute(url)
+
+
       }
     })
     .catch((e) => {})
@@ -71,7 +74,13 @@ class Navigator extends React.Component {
 
   _handleOpenURL = (event) => {
     // this handles the use case where the app is running in the background and is activated by universal linking...
-    Alert.alert('Linking Listener','url  ' + event.url)
+    // Alert.alert('Linking Listener','url  ' + event.url)
+    this.resetStackToProperRoute(event.url)
+  }
+
+  resetStackToProperRoute = (url) => {
+    let trailing = url.slice(url.lastIndexOf('/') + 1,url.length)
+    this.props.resetStack([ BarsMain, { ...BarDetail, id:parseInt(trailing) } ])
   }
 
   handleBackAction = () => {

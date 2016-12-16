@@ -29,7 +29,7 @@ export const getCards = (barId,attempt) => {
 
     fetch(Api.getCards, {method:'get',headers: {...Api.headers,'Bar-Id':barId} } )
     .then((res) => Api.checkStatus(res))
-    .then((res) => {
+    .then((res) => { console.log(res);
       // check for proper response, and having content length or else dispatch an error
       if (res.response && res.response.length > 0) {
         dispatch(cardsFulfilled(res.response))

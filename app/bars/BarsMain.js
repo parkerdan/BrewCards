@@ -92,7 +92,7 @@ class BarsMain extends React.Component {
               <BarRow
                 key={data.id}
                 data={data}
-                onPress={ () => this.props.pushRoute({...BarDetail,bar:data}) }
+                onPress={ () => this.props.pushRoute({...BarDetail,id:data.id}) }
               />
             )
           }
