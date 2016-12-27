@@ -28,6 +28,12 @@ const promtUpdate = (appVersion) => {
   ])
 }
 
+const appVersionToInt = (stringVersion) => {
+  // will strip the . off app versioning to check for a greater version.
+  // must use strict naming conventions with this method as 1.0.18 is greater than 2.0 onve this regex is run...  This method will work well on both platform since android releases always hit before iOS and Android does not provide an API to query versioning and I do not want to build it into my backend yet...
+  return parseInt(stringVersion.replace(/[.]/g,''))
+}
+
 export const checkAppVersion = () => {
   return (dispatch, getState) => {
     if (Platform.OS === 'ios') {
@@ -37,7 +43,7 @@ export const checkAppVersion = () => {
         // check the reply from itunes
         if (res && res.results && res.results[0] && res.results[0].version) {
           // check the version on file locally
-          if (getState().settings.appVersion !== res.results[0].version) {
+          if (appVersionToInt(getState().settings.appVersion) < appVersionToInt(res.results[0].version)) {
             // prompt
             promtUpdate(res.results[0].version)
           }

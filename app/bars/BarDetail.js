@@ -97,7 +97,7 @@ class BarDetail extends React.Component {
             buttonTextProps={{ style: loading.buttonText }}
             buttonProps={{
               style: loading.button,
-              onPress: () => this.props.getCards(this.props.bar.id)
+              onPress: () => this.props.getCards(this.props.id)
             }}
           />
         </View>

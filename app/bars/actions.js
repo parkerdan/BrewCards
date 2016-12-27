@@ -4,7 +4,10 @@ import Bars from './actionTypes';
 import Api from '../api/Api';
 import { ListView } from 'react-native';
 
-const ds = new ListView.DataSource({rowHasChanged: (r1,r2) => r1 !== r2,sectionHeaderHasChanged: (s1,s2) => s1 !== s2});
+const ds = new ListView.DataSource({
+  rowHasChanged: (r1,r2) => r1 !== r2,
+  sectionHeaderHasChanged: (s1,s2) => s1 !== s2
+});
 
 const constructDataBlob = (array) => {
   let blob = {};

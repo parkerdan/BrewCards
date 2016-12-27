@@ -6,7 +6,7 @@ import { AsyncStorage } from 'react-native';
 
 const defaultState = {
   showSwiper:true,
-  appVersion: '1.3',
+  appVersion: '1.5',
 }
 
 const reducer = (state=defaultState,action) => {

@@ -47,10 +47,7 @@ class Navigator extends React.Component {
       if (url) {
         // this handles the case where hte app is closed and is launched via deep linking.
         // Alert.alert('GET INIT URL','initial url  ' + url)
-        // console.log('Initial url is: ' + url);
         this.resetStackToProperRoute(url)
-
-
       }
     })
     .catch((e) => {})
@@ -74,7 +71,6 @@ class Navigator extends React.Component {
 
   _handleOpenURL = (event) => {
     // this handles the use case where the app is running in the background and is activated by universal linking...
-    // Alert.alert('Linking Listener','url  ' + event.url)
     this.resetStackToProperRoute(event.url)
   }
 
